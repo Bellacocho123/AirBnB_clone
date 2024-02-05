@@ -36,6 +36,10 @@ class TestBaseModel(unittest.TestCase):
             2021, 2, 17, 22, 46, 19, 620119)
                          )
         self.assertIsInstance(my_model.updated_at, datetime.datetime)
+        self.assertIsNotNone(my_model.id)
+        self.assertIsInstance(my_model.id, str)
+        self.assertIsNotNone(my_model.created_at)
+        self.assertIsInstance(my_model.created_at, datetime.datetime)
 
 
 if __name__ == '__main__':
