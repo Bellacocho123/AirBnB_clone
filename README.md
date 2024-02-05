@@ -9,10 +9,10 @@
 - An API that provides a communication interface between the frontend your data. 
 
 ### Console
-The console would be responsible for:
+The console is responsible for:
 - creating the data model.
-- manage objects via the console.
-- store and persis objects to a file(JSON file).
+- managing objects via the console.
+- storing and persisting objects to a file(JSON file).
 
 ## Usage:
 	$ ./console.py
