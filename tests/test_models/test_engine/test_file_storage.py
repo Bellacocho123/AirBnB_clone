@@ -18,18 +18,16 @@ class TestFileStorage(unittest.TestCase):
         self.assertIsNotNone(FileStorage.save.__doc__)
         self.assertIsNotNone(FileStorage.reload.__doc__)
 
-    def test_new(self):
+    def test_storage(self):
         """ Test the new method """
         storage = FileStorage()
         bm = BaseModel()
-        storage.new(bm)
         self.assertTrue("BaseModel." + bm.id in storage.all().keys())
 
     def test_save(self):
         """ Test the save method """
         storage = FileStorage()
         bm = BaseModel()
-        storage.new(bm)
         storage.save()
         with open("file.json", "r") as f:
             self.assertIn(bm.id, f.read())
