@@ -129,6 +129,33 @@ class HBNBCommand(cmd.Cmd):
                 return
         print("** no instance found **")
 
+    def default(self, arg):
+        """Called on an input line when the command prefix is not recognized"""
+        args = arg.split(".")
+        if len(args) < 2:
+            print("*** Unknown syntax: {}".format(arg))
+            return
+        model = args[0]
+        if model not in self.model_names:
+            print("** class doesn't exist **")
+            return
+        if args[1] == "all()":
+            self.do_all(model)
+        elif args[1] == "count()":
+            count = 0
+            for value in storage.all().values():
+                if value.__class__.__name__ == model:
+                    count += 1
+            print(count)
+        elif args[1].startswith("show("):
+            id = args[1][6:-2]
+            self.do_show(model + " " + id)
+        elif args[1].startswith("destroy("):
+            id = args[1][9:-2]
+            self.do_destroy(model + " " + id)
+
+        # TODO UPDATE
+
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
