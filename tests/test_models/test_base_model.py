@@ -41,6 +41,24 @@ class TestBaseModel(unittest.TestCase):
         self.assertIsNotNone(my_model.created_at)
         self.assertIsInstance(my_model.created_at, datetime.datetime)
 
+    def test_str(self):
+        """ Test for __str__ method """
+
+        my_model = BaseModel()
+        self.assertEqual(str(my_model), "[BaseModel] ({}) {}".format(
+            my_model.id, my_model.__dict__))
+        self.assertIsInstance(str(my_model), str)
+
+    def test_dict(self):
+        """ Test for to_dict method """
+
+        my_model = BaseModel()
+        my_model_dict = my_model.to_dict()
+        self.assertEqual(my_model_dict["__class__"], "BaseModel")
+        self.assertIsInstance(my_model_dict["created_at"], str)
+        self.assertIsInstance(my_model_dict["updated_at"], str)
+        self.assertIsInstance(my_model_dict["id"], str)
+
 
 if __name__ == '__main__':
     unittest.main()
