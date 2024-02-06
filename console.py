@@ -5,13 +5,21 @@
 
 import cmd
 from models.base_model import BaseModel
+from models.user import User
+from models.state import State
+from models.city import City
+from models.amenity import Amenity
+from models.place import Place
+from models.review import Review
 from models import storage
 
 
 class HBNBCommand(cmd.Cmd):
     """ Class to handle console input/output """
     prompt = '(hbnb) '
-    model_names = ["BaseModel"]
+    model_names = [
+        "BaseModel", "User", "State", "City", "Amenity", "Place", "Review"
+        ]
 
     def do_quit(self, arg):
         """Quit command to exit the program"""
@@ -29,7 +37,7 @@ class HBNBCommand(cmd.Cmd):
         if arg not in self.model_names:
             print("** class doesn't exist **")
             return
-        obj = BaseModel()
+        obj = eval(arg)()
         obj.save()
         print(obj.id)
 
@@ -95,7 +103,7 @@ class HBNBCommand(cmd.Cmd):
         id = items[1] if len(items) > 1 else ""
         attr = items[2] if len(items) > 2 else ""
         value = items[3] if len(items) > 3 else ""
-        
+
         if model == "":
             print("** class name missing **")
             return
@@ -111,13 +119,16 @@ class HBNBCommand(cmd.Cmd):
         if value == "":
             print("** value missing **")
             return
-        
+
         for _, obj in storage.all().items():
             if obj.id == id:
-                #TODO TYPE CAST VALUE
+                if hasattr(obj, attr):
+                    value = type(getattr(obj, attr))(value)
                 setattr(obj, attr, value)
                 storage.save()
                 return
         print("** no instance found **")
+
+
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
