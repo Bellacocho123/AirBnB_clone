@@ -19,6 +19,3 @@ The console is responsible for:
 
 ## Alternatively:
 	$ echo "help" | ./console.py
-
-## Authors/Collaborators
-[Adewale Kujore](https://github.com/Adewale66) || [Isabella Akeunekwu](https://github.com/Bellacocho123)
