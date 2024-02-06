@@ -9,9 +9,10 @@ from models.user import User
 from datetime import datetime
 from time import sleep
 
+
 class TestUser(unittest.TestCase):
     """ Testcases for User class"""
-    
+
     @classmethod
     def setUp(self):
         try:

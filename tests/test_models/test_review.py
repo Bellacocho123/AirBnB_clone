@@ -12,7 +12,7 @@ from datetime import datetime
 
 class TestReview(unittest.TestCase):
     """ Testcases for Review class"""
-    
+
     @classmethod
     def setUp(self):
         try:
@@ -148,7 +148,6 @@ class TestReview(unittest.TestCase):
         rvid = "Review." + rv.id
         with open("file.json", "r") as f:
             self.assertIn(rvid, f.read())
-
 
     def test_to_dict_type(self):
         self.assertTrue(dict, type(Review().to_dict()))

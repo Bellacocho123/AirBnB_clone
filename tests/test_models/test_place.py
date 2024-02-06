@@ -12,7 +12,7 @@ from time import sleep
 
 class TestPlace(unittest.TestCase):
     """ Testcases for Place class"""
-    
+
     @classmethod
     def setUp(self):
         try:
@@ -64,7 +64,7 @@ class TestPlace(unittest.TestCase):
         self.assertTrue(hasattr(my_place, "__str__"))
         self.assertTrue(hasattr(my_place, "save"))
         self.assertTrue(hasattr(my_place, "__class__"))
-    
+
     def test_city_id_is_public_class_attribute(self):
         pl = Place()
         self.assertEqual(str, type(Place.city_id))
@@ -175,7 +175,7 @@ class TestPlace(unittest.TestCase):
     def test_instantiation_with_None_kwargs(self):
         with self.assertRaises(TypeError):
             Place(id=None, created_at=None, updated_at=None)
-    
+
     def test_one_save(self):
         pl = Place()
         sleep(0.05)

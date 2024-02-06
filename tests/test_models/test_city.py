@@ -9,9 +9,10 @@ from models.city import City
 from datetime import datetime
 from time import sleep
 
+
 class TestCity(unittest.TestCase):
     """ Testcases for City class"""
-    
+
     @classmethod
     def setUp(self):
         try:
@@ -46,6 +47,7 @@ class TestCity(unittest.TestCase):
         my_city = City()
         self.assertTrue(hasattr(my_city, "state_id"))
         self.assertTrue(hasattr(my_city, "name"))
+
     def test_name_is_public_class_attribute(self):
         cy = City()
         self.assertEqual(str, type(City.name))
@@ -96,7 +98,7 @@ class TestCity(unittest.TestCase):
     def test_instantiation_with_None_kwargs(self):
         with self.assertRaises(TypeError):
             City(id=None, created_at=None, updated_at=None)
-    
+
     def test_two_saves(self):
         cy = City()
         sleep(0.05)
@@ -119,7 +121,7 @@ class TestCity(unittest.TestCase):
         cyid = "City." + cy.id
         with open("file.json", "r") as f:
             self.assertIn(cyid, f.read())
-    
+
     def test_to_dict_type(self):
         self.assertTrue(dict, type(City().to_dict()))
 
@@ -165,6 +167,7 @@ class TestCity(unittest.TestCase):
         cy = City()
         with self.assertRaises(TypeError):
             cy.to_dict(None)
+
 
 if __name__ == "__main__":
     unittest.main()

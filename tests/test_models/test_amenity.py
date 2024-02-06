@@ -12,7 +12,7 @@ from datetime import datetime
 
 class TestAmenity(unittest.TestCase):
     """ Testcases for Amenity class"""
-    
+
     @classmethod
     def setUp(self):
         try:
@@ -55,11 +55,11 @@ class TestAmenity(unittest.TestCase):
         self.assertTrue(hasattr(my_amenity, "__class__"))
 
     def test_one_save(self):
-            am = Amenity()
-            sleep(0.05)
-            first_updated_at = am.updated_at
-            am.save()
-            self.assertLess(first_updated_at, am.updated_at)
+        am = Amenity()
+        sleep(0.05)
+        first_updated_at = am.updated_at
+        am.save()
+        self.assertLess(first_updated_at, am.updated_at)
 
     def test_two_saves(self):
         am = Amenity()
@@ -83,7 +83,7 @@ class TestAmenity(unittest.TestCase):
         amid = "Amenity." + am.id
         with open("file.json", "r") as f:
             self.assertIn(amid, f.read())
-    
+
     def test_to_dict_type(self):
         self.assertTrue(dict, type(Amenity().to_dict()))
 
@@ -129,6 +129,7 @@ class TestAmenity(unittest.TestCase):
         am = Amenity()
         with self.assertRaises(TypeError):
             am.to_dict(None)
+
 
 if __name__ == "__main__":
     unittest.main()

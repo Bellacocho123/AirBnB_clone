@@ -10,7 +10,7 @@ import os
 
 class TestBaseModel(unittest.TestCase):
     """ Test cases for the base_model module """
-    
+
     @classmethod
     def setUp(self):
         try:
@@ -76,7 +76,7 @@ class TestBaseModel(unittest.TestCase):
         self.assertIsInstance(my_model_dict["created_at"], str)
         self.assertIsInstance(my_model_dict["updated_at"], str)
         self.assertIsInstance(my_model_dict["id"], str)
-    
+
     def test_to_dict_type(self):
         bm = BaseModel()
         self.assertTrue(dict, type(bm.to_dict()))
@@ -122,7 +122,6 @@ class TestBaseModel(unittest.TestCase):
         bm = BaseModel()
         with self.assertRaises(TypeError):
             bm.to_dict(None)
-
 
 
 if __name__ == '__main__':
