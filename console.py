@@ -160,9 +160,9 @@ class HBNBCommand(cmd.Cmd):
             self.do_destroy(model + " " + id)
         elif args[1].startswith("update("):
             args = re.split(r'[\(\),]', args[1])
-            id = args[1]
-            attr = args[2]
-            value = args[3]
+            id = args[1][1:-1]
+            attr = args[2].strip()[1:-1]
+            value = args[3].strip()[1:-1]
             self.do_update(model + " " + id + " " + attr + " " + value)
 
 
