@@ -4,6 +4,7 @@
 
 
 import cmd
+import re
 from models.base_model import BaseModel
 from models.user import User
 from models.state import State
@@ -28,6 +29,10 @@ class HBNBCommand(cmd.Cmd):
     def do_EOF(self, arg):
         """EOF command to exit the program"""
         return True
+
+    def emptyline(self):
+        """Do nothing for an emptyline"""
+        pass
 
     def do_create(self, arg):
         """Creates a new instance of BaseModel, saves it to JSON file"""
@@ -153,8 +158,6 @@ class HBNBCommand(cmd.Cmd):
         elif args[1].startswith("destroy("):
             id = args[1][9:-2]
             self.do_destroy(model + " " + id)
-
-        # TODO UPDATE
 
 
 if __name__ == '__main__':
