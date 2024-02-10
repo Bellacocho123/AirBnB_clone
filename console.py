@@ -159,11 +159,29 @@ class HBNBCommand(cmd.Cmd):
             id = args[1][9:-2]
             self.do_destroy(model + " " + id)
         elif args[1].startswith("update("):
-            args = re.split(r'[\(\),]', args[1])
-            id = args[1][1:-1]
-            attr = args[2].strip()[1:-1]
-            value = args[3].strip()[1:-1]
-            self.do_update(model + " " + id + " " + attr + " " + value)
+            if "{" in args[1]:
+                args = re.split(r'[\(\),]', args[1])
+                id = args[1][1:-1]
+                kwargs = args[2:-1]
+                for obj in kwargs:
+                    attr, value = obj.split(":")
+                    if "{" in attr:
+                        attr = attr.strip()[2:-1]
+                    else:
+                        attr = attr.strip()[1:-1]
+                    if "}" in value:
+                        value = value.strip()[1:-2]
+                    if "\"" not in value:
+                        value = value.strip()
+                    else:
+                        value = value.strip()[1:-1]
+                    self.do_update(model + " " + id + " " + attr + " " + value)
+            else:
+                args = re.split(r'[\(\),]', args[1])
+                id = args[1][1:-1]
+                attr = args[2].strip()[1:-1]
+                value = args[3].strip()[1:-1]
+                self.do_update(model + " " + id + " " + attr + " " + value)
 
 
 if __name__ == '__main__':
