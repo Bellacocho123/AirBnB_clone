@@ -1,5 +1,5 @@
 # AirBnB clone
-**About:** In this project, we created an AirBnb clone of the which is a copy of the [AirBnb website](https://www.airbnb.com/)
+**About:** In this project, we created an AirBnb clone which is a copy of the [AirBnb website](https://www.airbnb.com/)
 
 ### The application is composed by:
 
