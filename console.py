@@ -169,12 +169,12 @@ class HBNBCommand(cmd.Cmd):
                         attr = attr.strip()[2:-1]
                     else:
                         attr = attr.strip()[1:-1]
-                    if "}" in value:
+                    if "}" in value and "\"" in value:
                         value = value.strip()[1:-2]
-                    if "\"" not in value:
-                        value = value.strip()
-                    else:
+                    elif "\"" in value:
                         value = value.strip()[1:-1]
+                    elif "}" in value and "\"" not in value:
+                        value = value.strip()[:-1]
                     self.do_update(model + " " + id + " " + attr + " " + value)
             else:
                 args = re.split(r'[\(\),]', args[1])
