@@ -24,12 +24,10 @@ class FileStorage:
         dic = {}
         if cls:
             for key, value in FileStorage.__objects.items():
-                if type(value) == cls:
+                if isinstance(type(value), cls):
                     dic[key] = value
             return dic
         return FileStorage.__objects
-        
-        
 
     def new(self, obj):
         """ Sets in __objects the obj with key <obj class name>.id """
