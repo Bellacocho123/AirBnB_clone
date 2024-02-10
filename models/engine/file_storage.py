@@ -3,7 +3,6 @@
 
 
 import json
-import os
 from models.base_model import BaseModel
 from models.user import User
 from models.state import State
@@ -43,11 +42,10 @@ class FileStorage:
         """ Deserializes the JSON file to __objects """
         try:
             with open(FileStorage.__file_path, "r") as file:
-                if os.path.getsize(FileStorage.__file_path) != 0:
-                    data = json.load(file)
-                    for k, v in data.items():
-                        cls = v["__class__"]
-                        obj = eval(cls + "(**v)")
-                        FileStorage.__objects[k] = obj
+                obj_dict = json.load(file)
+                for key, value in obj_dict.items():
+                    cls_name = value["__class__"]
+                    cls = eval(cls_name)
+                    FileStorage.__objects[key] = cls(**value)
         except FileNotFoundError:
             return
