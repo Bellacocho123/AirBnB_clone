@@ -42,10 +42,10 @@ class FileStorage:
         try:
             with open(FileStorage.__file_path, "r") as file:
                 obj_dict = json.load(file)
-                for key, value in obj_dict.items():
+                for _, value in obj_dict.items():
                     cls_name = value["__class__"]
                     del value["__class__"]
                     cls = eval(cls_name)
-                    FileStorage.__objects[key] = cls(**value)
+                    self.new(cls(**value))
         except FileNotFoundError:
             return
