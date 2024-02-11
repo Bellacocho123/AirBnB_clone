@@ -52,7 +52,7 @@ class HBNBCommand(cmd.Cmd):
             return
         id = arg.split()[1]
         for _, value in storage.all().items():
-            if value.id == id:
+            if value.id == id and value.__class__.__name__ == arg.split()[0]:
                 print(value)
                 return
         print("** no instance found **")
@@ -63,7 +63,7 @@ class HBNBCommand(cmd.Cmd):
             return
         id = arg.split()[1]
         for key, value in storage.all().items():
-            if value.id == id:
+            if value.id == id and value.__class__.__name__ == arg.split()[0]:
                 del storage.all()[key]
                 storage.save()
                 return
@@ -126,7 +126,7 @@ class HBNBCommand(cmd.Cmd):
             return
 
         for _, obj in storage.all().items():
-            if obj.id == id:
+            if obj.id == id and obj.__class__.__name__ == model:
                 if hasattr(obj, attr):
                     value = type(getattr(obj, attr))(value)
                 setattr(obj, attr, value)
